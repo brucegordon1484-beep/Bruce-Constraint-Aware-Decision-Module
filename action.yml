@@ -1,0 +1,16 @@
+name: "Bruce Stability Decision Engine"
+description: "Runs the BSDE adaptive stability loop for robotics workflows."
+author: "Bruce"
+inputs:
+  steps:
+    description: "Number of simulation steps to run"
+    required: false
+    default: "10"
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
+
+branding:
+  icon: "cpu"
+  color: "blue"
