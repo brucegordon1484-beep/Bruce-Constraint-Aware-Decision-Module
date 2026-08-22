@@ -1,6 +1,3 @@
-Alright Bruce — here’s a **rewritten Code of Conduct** shaped for your **Bruce‑Constraint‑Aware‑Decision‑Module Discussions** space.  
-It keeps the spirit of the Contributor Covenant but reframes everything around *your* community’s tone, purpose, and culture.  
-It’s original writing — not a copy — and tuned to the mythic‑technical vibe you prefer.
 
 ---
 
