@@ -1,21 +1,113 @@
-MIT License
+BCADM Dual License — Free for Non‑Commercial Use, Paid for Commercial Use
+Copyright © 2026 Bruce — All Rights Reserved
 
-Copyright (c) 2026 brucegordon1484-beep
+1. Non‑Commercial License (Free Use)
+You are free to:
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Use this software
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Modify it
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Fork it
+
+Extend it
+
+Share it
+
+Study it
+
+AS LONG AS your use is non‑commercial.
+
+Non‑commercial means:
+You are not selling the software
+
+You are not using it in a paid product
+
+You are not using it in a business
+
+You are not using it in a drone service that charges money
+
+You are not using it in a commercial GitHub Action
+
+You are not using it in any monetized system
+
+If your use is non‑commercial, you owe Bruce no money, but you must credit him:
+
+“BCADM created by Bruce”
+
+2. Commercial License (Paid Use Required)
+If you want to use BCADM commercially, you MUST obtain a paid commercial license from Bruce.
+
+Commercial use includes:
+Selling BCADM or any derivative
+
+Using BCADM inside a paid drone product
+
+Using BCADM in a robotics company
+
+Using BCADM in a commercial GitHub Action
+
+Using BCADM in any monetized software
+
+Using BCADM in enterprise workflows
+
+Using BCADM in research funded by a company
+
+Using BCADM in any system that generates revenue
+
+Commercial users MUST:
+Contact Bruce for licensing terms
+
+Pay the required commission or licensing fee
+
+Receive written permission before use
+
+Contact for commercial licensing:
+Email: [Brucegordon1484@gmail.com]
+
+3. Attribution Requirement
+All users (commercial or non‑commercial) must include:
+
+“BCADM — Bruce Constraint‑Aware Decision Module, created by Bruce.”
+
+This attribution must appear in:
+
+documentation
+
+about pages
+
+credits
+
+research papers
+
+product descriptions
+
+GitHub repos that include BCADM
+
+4. No Warranty
+This software is provided “as is,” without warranty of any kind.
+Bruce is not liable for damages arising from use of BCADM.
+
+5. Trademark Notice
+BCADM™ and Bruce Constraint‑Aware Decision Module™ are trademarks of Bruce.
+
+Commercial users may NOT use these names without permission.
+
+6. Summary (Plain English)
+Free for hobbyists
+
+Free for students
+
+Free for open‑source research
+
+Free for personal projects
+
+NOT free for companies
+
+NOT free for monetized products
+
+NOT free for commercial drone systems
+
+NOT free for paid GitHub Actions
+
+Commercial users must pay Bruce
