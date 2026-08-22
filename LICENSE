@@ -111,3 +111,5 @@ NOT free for commercial drone systems
 NOT free for paid GitHub Actions
 
 Commercial users must pay Bruce
+git fetch origin
+git checkout alert-autofix-1
