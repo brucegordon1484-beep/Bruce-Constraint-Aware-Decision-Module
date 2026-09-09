@@ -1,6 +1,7 @@
-name: "Bruce Stability Decision Engine"
-description: "Runs the BSDE adaptive stability loop for robotics workflows."
+name: "Bruce Constraint‑Aware Decision Module (BCADM)"
+description: "Runs the BCADM multi‑constraint decision loop for agent and robotics workflows."
 author: "Bruce"
+
 inputs:
   steps:
     description: "Number of simulation steps to run"
