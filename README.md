@@ -1,7 +1,21 @@
-# Bruce-Constraint-Aware-Decision-Module
-BSDE provides a stability-first control loop that:  identifies constraints  avoids unsafe boundaries  maintains equilibrium  probes gently  adapts each step  produces interpretable reasoning logs  Perfect for:  humanoid robot decision layers  safe-mode controllers  mobile robot navigation  drone stability logic  research experiments  ROS2 
- name: BSDE Decision
-  uses: Bruce/BSDE@v1
-  with:
-    state: "battery_low"
-    constraints: "avoid_heavy_load"
+Action‑Contract System (v1.1 Update)
+The BCADM now includes a full safety‑aware action‑contract returned by the environment whenever an agent issues a movement command. This replaces the previous behavior where only the final pose was returned.
+
+This update makes constraint interventions explicit and prevents upstream agents from mistaking a clamped or safety‑modified action for a fully executed one. It also makes the module suitable for multi‑agent systems, planners, supervisors, and democratized robotics environments.
+
+What the environment returns now
+Each call to env.act() returns a structured contract:
+
+requested – the movement the agent attempted
+
+achieved – the movement actually executed after clamping
+
+modified – whether the action was changed for safety
+
+violated_rule – which boundary constraint fired (if any)
+
+intervention_time – timestamp of the safety intervention
+
+recovery_state – environment’s safety status
+
+final_pose – the resulting position after movement
