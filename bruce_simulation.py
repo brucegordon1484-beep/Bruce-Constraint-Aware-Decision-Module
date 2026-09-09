@@ -38,17 +38,52 @@ class SimulationEnv:
         }
 
     def act(self, action: Dict[str, Any]) -> Dict[str, Any]:
-        ax = action["params"].get("dx", 0.0)
-        ay = action["params"].get("dy", 0.0)
+        # Requested movement
+        requested_dx = action["params"].get("dx", 0.0)
+        requested_dy = action["params"].get("dy", 0.0)
 
-        self.x += ax
-        self.y += ay
+        proposed_x = self.x + requested_dx
+        proposed_y = self.y + requested_dy
 
-        # Clamp to boundaries
-        self.x = max(self.min_x, min(self.max_x, self.x))
-        self.y = max(self.min_y, min(self.max_y, self.y))
+        violated_rule = None
+        modified = False
 
-        return {"x": self.x, "y": self.y}
+        # Clamp X
+        if proposed_x < self.min_x:
+            proposed_x = self.min_x
+            violated_rule = "min_x_boundary"
+            modified = True
+        elif proposed_x > self.max_x:
+            proposed_x = self.max_x
+            violated_rule = "max_x_boundary"
+            modified = True
+
+        # Clamp Y
+        if proposed_y < self.min_y:
+            proposed_y = self.min_y
+            violated_rule = "min_y_boundary"
+            modified = True
+        elif proposed_y > self.max_y:
+            proposed_y = self.max_y
+            violated_rule = "max_y_boundary"
+            modified = True
+
+        achieved_dx = proposed_x - self.x
+        achieved_dy = proposed_y - self.y
+
+        # Update state
+        self.x = proposed_x
+        self.y = proposed_y
+
+        return {
+            "requested": {"dx": requested_dx, "dy": requested_dy},
+            "achieved": {"dx": achieved_dx, "dy": achieved_dy},
+            "modified": modified,
+            "violated_rule": violated_rule,
+            "intervention_time": time.time(),
+            "recovery_state": {"safe": True},
+            "final_pose": {"x": self.x, "y": self.y}
+        }
 
     def score(self, state: Dict[str, Any]) -> float:
         # Higher score near center (0,0)
@@ -162,7 +197,7 @@ class BruceAgent:
         best_action = self.selector.select(actions, state, constraints, self.env)
 
         feedback = self.env.act(best_action)
-        score = self.env.score(feedback)
+        score = self.env.score(feedback["final_pose"])
 
         self._log(state, constraints, questions, best_action, feedback, score)
 
@@ -188,7 +223,12 @@ class BruceAgent:
         for q in questions:
             print(f"  - {q}")
         print(f"Action: {action}")
-        print(f"New State: {feedback}")
+        print("Action Contract:")
+        print(f"  Requested: {feedback['requested']}")
+        print(f"  Achieved: {feedback['achieved']}")
+        print(f"  Modified: {feedback['modified']}")
+        print(f"  Violated Rule: {feedback['violated_rule']}")
+        print(f"  Final Pose: {feedback['final_pose']}")
         print(f"Score: {score}")
         print("========================")
 
