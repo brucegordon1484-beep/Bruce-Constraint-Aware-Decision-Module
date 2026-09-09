@@ -1,5 +1,5 @@
-name: "Bruce Stability Decision Engine"
-description: "Runs the BCADM v1.1 safety-aware action-contract simulation loop for robotics workflows."
+name: "Bruce Constraint‑Aware Decision Module (BCADM)"
+description: "Runs the BCADM v1.1 safety-aware multi‑constraint action‑contract decision loop for robotics workflows."
 author: "Bruce"
 
 inputs:
@@ -15,3 +15,4 @@ runs:
 branding:
   icon: "cpu"
   color: "blue"
+

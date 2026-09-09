@@ -38,35 +38,38 @@ class SimulationEnv:
         }
 
     def act(self, action: Dict[str, Any]) -> Dict[str, Any]:
-        # Requested movement
         requested_dx = action["params"].get("dx", 0.0)
         requested_dy = action["params"].get("dy", 0.0)
 
         proposed_x = self.x + requested_dx
         proposed_y = self.y + requested_dy
 
+        violated_rules = []
         violated_rule = None
         modified = False
 
         # Clamp X
         if proposed_x < self.min_x:
             proposed_x = self.min_x
-            violated_rule = "min_x_boundary"
+            violated_rules.append("min_x_boundary")
             modified = True
         elif proposed_x > self.max_x:
             proposed_x = self.max_x
-            violated_rule = "max_x_boundary"
+            violated_rules.append("max_x_boundary")
             modified = True
 
         # Clamp Y
         if proposed_y < self.min_y:
             proposed_y = self.min_y
-            violated_rule = "min_y_boundary"
+            violated_rules.append("min_y_boundary")
             modified = True
         elif proposed_y > self.max_y:
             proposed_y = self.max_y
-            violated_rule = "max_y_boundary"
+            violated_rules.append("max_y_boundary")
             modified = True
+
+        # Backward compatibility: last rule wins
+        violated_rule = violated_rules[-1] if violated_rules else None
 
         achieved_dx = proposed_x - self.x
         achieved_dy = proposed_y - self.y
@@ -80,13 +83,13 @@ class SimulationEnv:
             "achieved": {"dx": achieved_dx, "dy": achieved_dy},
             "modified": modified,
             "violated_rule": violated_rule,
+            "violated_rules": violated_rules,
             "intervention_time": time.time(),
             "recovery_state": {"safe": True},
             "final_pose": {"x": self.x, "y": self.y}
         }
 
     def score(self, state: Dict[str, Any]) -> float:
-        # Higher score near center (0,0)
         return 1.0 - (abs(state["x"]) + abs(state["y"])) / 10.0
 
 
@@ -228,6 +231,7 @@ class BruceAgent:
         print(f"  Achieved: {feedback['achieved']}")
         print(f"  Modified: {feedback['modified']}")
         print(f"  Violated Rule: {feedback['violated_rule']}")
+        print(f"  Violated Rules: {feedback['violated_rules']}")
         print(f"  Final Pose: {feedback['final_pose']}")
         print(f"Score: {score}")
         print("========================")
