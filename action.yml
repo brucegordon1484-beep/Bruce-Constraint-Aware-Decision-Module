@@ -1,9 +1,10 @@
 name: "Bruce Stability Decision Engine"
-description: "Runs the BSDE adaptive stability loop for robotics workflows."
+description: "Runs the BCADM v1.1 safety-aware action-contract simulation loop for robotics workflows."
 author: "Bruce"
+
 inputs:
   steps:
-    description: "Number of simulation steps to run"
+    description: "Number of simulation steps to run (each step returns a full action-contract)"
     required: false
     default: "10"
 
