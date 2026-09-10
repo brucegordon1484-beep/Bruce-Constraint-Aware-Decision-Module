@@ -1,10 +1,10 @@
 name: "Bruce Constraint‑Aware Decision Module (BCADM)"
-description: "Runs the BCADM v1.1 safety-aware multi‑constraint action‑contract decision loop for robotics workflows."
+description: "Runs the BCADM multi‑constraint decision loop and safety‑contract simulator."
 author: "Bruce"
 
 inputs:
   steps:
-    description: "Number of simulation steps to run (each step returns a full action-contract)"
+    description: "Number of simulation steps to run (each step produces a full action‑contract report)"
     required: false
     default: "10"
 

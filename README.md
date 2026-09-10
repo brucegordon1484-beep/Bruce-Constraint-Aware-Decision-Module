@@ -1,22 +1,61 @@
-# Bruce‑Constraint‑Aware‑Decision‑Module (BCADM)
+Bruce‑Constraint‑Aware‑Decision‑Module (BCADM)
+BCADM provides a contract‑aware, multi‑constraint decision loop designed for robotics safety workflows.
+It evaluates system state, applies constraint boundaries, triggers clamping when needed, and produces structured, interpretable action‑contract logs suitable for real robotics models, simulators, and teaching environments.
 
-## Action‑Contract System (v1.1 Update)
+BCADM now incorporates OmniLink’s safety‑layer recommendations:
 
-The BCADM now includes a full safety‑aware action‑contract returned by the environment whenever an agent issues a movement command. This replaces the previous behavior where only the final pose was returned.
+Multi‑constraint reporting
 
-This update makes constraint interventions explicit and prevents upstream agents from mistaking a clamped or safety‑modified action for a fully executed one. It also makes the module suitable for multi‑agent systems, planners, supervisors, and democratized robotics environments.
+violated_rules lists all fired constraints
 
-## What the environment returns now
+violated_rule preserves backward‑compatible “last rule wins”
 
-Each call to `env.act()` returns a structured contract:
+Intervention semantics
 
-- **requested** – the movement the agent attempted  
-- **achieved** – the movement actually executed after clamping  
-- **modified** – whether the action was changed for safety  
-- **violated_rule** – the last boundary constraint that fired (legacy compatibility)  
-- **violated_rules** – *all* constraints that fired (new in v1.1)  
-- **intervention_time** – timestamp of the safety intervention  
-- **recovery_state** – environment’s safety status  
-- **final_pose** – the resulting position after movement  
+intervention_time is stamped only when a true intervention occurs (modified == True)
 
-BCADM v1.1 resolves the previous observability gap where simultaneous X/Y boundary violations would overwrite each other. The module now provides complete multi‑constraint visibility for robotics workflows, planners, and agent‑based systems.
+Branchable recovery state
+
+recovery_state reports safe, status, and clamped_axes
+
+Contract activation in normal operation
+
+The decision loop blends structural stability with boundary‑seeking behavior, ensuring constraints are exercised naturally
+
+Perfect for:
+
+supervisory safety layers
+
+humanoid robot stability envelopes
+
+safe‑mode controllers
+
+mobile robot navigation
+
+drone geofence/tilt‑limit testing
+
+ROS2 research environments
+
+constraint‑aware teaching toolsExample Usage
+yaml
+name: BCADM Decision
+uses: Bruce/BCADM@v1
+with:
+  state: "battery_low"
+  constraints: "avoid_heavy_load"
+This step sends the current system state and operational constraints into the BCADM module.
+BCADM evaluates the inputs, applies its multi‑constraint safety logic, and returns a full action‑contract including:
+
+requested vs achieved movement
+
+whether the action was modified
+
+all violated constraints
+
+intervention timestamp
+
+recovery state
+
+final pose
+
+This makes BCADM ideal for safety‑contract validation, constraint‑exercise simulations, and robotics education.
