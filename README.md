@@ -2,7 +2,7 @@ Bruce‑Constraint‑Aware‑Decision‑Module (BCADM)
 BCADM provides a contract‑aware, multi‑constraint decision loop designed for robotics safety workflows.
 It evaluates system state, applies constraint boundaries, triggers clamping when needed, and produces structured, interpretable action‑contract logs suitable for real robotics models, simulators, and teaching environments.
 
-BCADM now incorporates OmniLink’s safety‑layer recommendations:
+BCADM now incorporates Omni safety‑layer recommendations:
 
 Multi‑constraint reporting
 
