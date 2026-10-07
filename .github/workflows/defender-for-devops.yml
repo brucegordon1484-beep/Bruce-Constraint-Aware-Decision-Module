@@ -22,6 +22,10 @@ on:
   schedule:
     - cron: '22 8 * * 2'   # Weekly Tuesday run at 08:22
 
+permissions:
+  contents: read
+  security-events: write
+
 jobs:
   bcadm-defender:
     runs-on: windows-latest   # BCADM analysis currently validated on Windows runners
