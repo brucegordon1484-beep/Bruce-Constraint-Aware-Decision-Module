@@ -1,0 +1,49 @@
+# BCADM Defender Workflow
+# -----------------------
+# This workflow integrates static analysis, constraint validation,
+# and safety‑contract checks into the BCADM development cycle.
+#
+# BCADM Defender runs automated analysis tools to ensure:
+# - constraint definitions remain consistent
+# - decision‑path logic is deterministic
+# - safety‑contract rules are not violated
+# - simulation modules remain reproducible
+#
+# This workflow uses third‑party GitHub Actions governed by
+# their own terms of service and privacy policies.
+
+name: "BCADM Defender"
+
+on:
+  push:
+    branches: [ 'main' ]
+  pull_request:
+    branches: [ 'main' ]
+  schedule:
+    - cron: '22 8 * * 2'   # Weekly Tuesday run at 08:22
+
+jobs:
+  bcadm-defender:
+    runs-on: windows-latest   # BCADM analysis currently validated on Windows runners
+
+    steps:
+    - name: Checkout BCADM repository
+      uses: actions/checkout@v4
+
+    - name: Setup .NET for BCADM tooling
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: |
+          6.0.x
+
+    # BCADM Static Analysis & Safety‑Contract Validation
+    - name: Run BCADM Defender Analysis
+      uses: microsoft/security-devops-action@v1.6.0
+      id: bcadm_defender
+
+    # Upload SARIF results to GitHub Security tab
+    - name: Upload BCADM Defender Results
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: ${{ steps.bcadm_defender.outputs.sarifFile }}
+
