@@ -1,27 +1,28 @@
 version: 2
-
 updates:
-  # NPM dependencies
-  - package-ecosystem: "npm"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-    groups:
-      npm-all:
-        patterns:
-          - "*"
-
-  # Python dependencies (pip)
+  # Python dependencies for BCADM core, simulation engine, constraint engine, MCP server
   - package-ecosystem: "pip"
     directory: "/"
     schedule:
       interval: "weekly"
     groups:
+      bcadm-core:
+        patterns:
+          - "bcadm*"
+      bcadm-simulation:
+        patterns:
+          - "simulation*"
+      bcadm-constraints:
+        patterns:
+          - "constraint*"
+      bcadm-mcp:
+        patterns:
+          - "mcp*"
       pip-all:
         patterns:
           - "*"
 
-  # GitHub Actions
+  # GitHub Actions workflows (CI, linting, testing)
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
@@ -31,12 +32,3 @@ updates:
         patterns:
           - "*"
 
-  # Docker (if you add Dockerfile later)
-  - package-ecosystem: "docker"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-    groups:
-      docker-all:
-        patterns:
-          - "*"
