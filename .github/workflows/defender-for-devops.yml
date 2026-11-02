@@ -42,7 +42,7 @@ jobs:
 
     # BCADM Static Analysis & Safety‑Contract Validation
     - name: Run BCADM Defender Analysis
-      uses: microsoft/security-devops-action@v1.12.0
+      uses: microsoft/security-devops-action@v1.12.1
       id: bcadm_defender
 
     # Upload SARIF results to GitHub Security tab
